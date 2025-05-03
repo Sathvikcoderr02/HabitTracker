@@ -121,9 +121,15 @@ const HabitTracker: React.FC = () => {
       color: habit.color
     };
     
-    // Add the new habit to the state
+    // Add the new habit to the state using functional update to ensure we're working with the latest state
     setHabits(prevHabits => [...prevHabits, newHabit]);
+    
+    // Close the modal
     setShowAddHabitModal(false);
+    
+    // Log for debugging
+    console.log("Added new habit:", newHabit);
+    console.log("Updated habits:", [...habits, newHabit]);
   };
   
   // Handle delete habit
@@ -815,29 +821,22 @@ interface WeeklyStatsProps {
 const WeeklyStats: React.FC<WeeklyStatsProps> = ({ habits }) => {
   // Generate pie data from habits
   const pieData = useMemo(() => {
-    // Make sure we have habits before trying to create the pie chart data
-    if (!habits || habits.length === 0) {
-      return [];
-    }
+    if (!habits || habits.length === 0) return [];
     
     return habits.map(habit => ({
       name: habit.name,
-      value: habit.progress.reduce((sum, val) => sum + val, 0),
+      value: habit.progress[habit.progress.length - 1],
       color: habit.color
     }));
   }, [habits]);
-  
+
   // Generate bar chart data
   const barData = useMemo(() => {
-    // Make sure we have habits before trying to create the bar chart data
-    if (!habits || habits.length === 0) {
-      return [];
-    }
+    if (!habits || habits.length === 0) return [];
     
     return habits.map(habit => ({
       name: habit.name,
       currentStreak: habit.currentStreak,
-      longestStreak: habit.longestStreak,
       color: habit.color
     }));
   }, [habits]);
