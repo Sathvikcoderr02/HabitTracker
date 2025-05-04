@@ -313,7 +313,20 @@ const AddHabitModal: React.FC<AddHabitModalProps> = ({ onClose, handleAddHabit }
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Color</label>
             <div className="grid grid-cols-6 gap-2">
-              {['#3B82F6', '#EF4444', '#10B981', '#8B5CF6', '#EC4899', '#F59E0B'].map((color) => (
+              {[
+                '#3B82F6', // Blue
+                '#EF4444', // Red
+                '#10B981', // Green
+                '#8B5CF6', // Purple
+                '#EC4899', // Pink
+                '#F59E0B', // Amber
+                '#06B6D4', // Cyan
+                '#6366F1', // Indigo
+                '#84CC16', // Lime
+                '#14B8A6', // Teal
+                '#F97316', // Orange
+                '#8B5CF6'  // Violet
+              ].map((color) => (
                 <motion.button
                   key={color}
                   type="button"
@@ -902,7 +915,6 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ habits }) => {
                     border: '1px solid #f3f4f6',
                     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
                   }} 
-                  formatter={(value: number) => [`${value}%`, 'Completion Rate']}
                 />
                 <Legend />
                 <Bar 
