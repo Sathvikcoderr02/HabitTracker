@@ -440,8 +440,9 @@ const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
           
-          {/* User profile */}
-          <div className="flex items-center space-x-4">
+          {/* User profile and mobile menu button */}
+          <div className="flex items-center space-x-2">
+            {/* User profile */}
             <div className="relative">
               <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
               <img 
@@ -451,22 +452,22 @@ const Navbar: React.FC<NavbarProps> = ({
                 onClick={handleProfileClick}
               />
             </div>
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-500 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-gray-500 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -869,7 +870,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ habits }) => {
           transition={{ duration: 0.3 }}
         >
           <h3 className="font-semibold text-gray-800 mb-4">Time Distribution</h3>
-          <div className="h-64 flex items-center justify-center">
+          <div className="h-80 flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -888,7 +889,14 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ habits }) => {
                   ))}
                 </Pie>
                 <Tooltip />
-                <Legend layout="vertical" verticalAlign="middle" align="right" />
+                <Legend 
+                  layout="horizontal" 
+                  verticalAlign="bottom" 
+                  align="center"
+                  wrapperStyle={{
+                    paddingTop: '20px',
+                  }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
