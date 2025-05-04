@@ -325,7 +325,7 @@ const AddHabitModal: React.FC<AddHabitModalProps> = ({ onClose, handleAddHabit }
                 '#84CC16', // Lime
                 '#14B8A6', // Teal
                 '#F97316', // Orange
-                '#8B5CF6'  // Violet
+                '#D946EF'  // Fuchsia
               ].map((color) => (
                 <motion.button
                   key={color}
