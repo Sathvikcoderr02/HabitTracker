@@ -902,6 +902,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ habits }) => {
                     border: '1px solid #f3f4f6',
                     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
                   }} 
+                  formatter={(value: number) => [`${value}%`, 'Completion Rate']}
                 />
                 <Legend />
                 <Bar 
@@ -1226,7 +1227,7 @@ const HabitDetailsModal: React.FC<HabitDetailsModalProps> = ({ habit, onClose, h
                 }))} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                   <XAxis dataKey="day" />
-                  <YAxis tick={{ fontSize: 12 }} />
+                  <YAxis tickFormatter={(value: number) => `${value}%`} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: 'white', 
@@ -1234,6 +1235,7 @@ const HabitDetailsModal: React.FC<HabitDetailsModalProps> = ({ habit, onClose, h
                       border: '1px solid #f3f4f6',
                       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
                     }} 
+                    formatter={(value: number) => [`${value}%`, 'Completion Rate']}
                   />
                   <Line 
                     type="monotone" 
@@ -1585,15 +1587,15 @@ const StatsView: React.FC<StatsViewProps> = ({ habits }) => {
                 <BarChart data={completionData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                   <XAxis dataKey="name" />
-                  <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
+                  <YAxis domain={[0, 100]} tickFormatter={(value: number) => `${value}%`} />
                   <Tooltip 
-                    formatter={(value: number) => [`${value}%`, 'Completion Rate']}
                     contentStyle={{ 
                       backgroundColor: 'white', 
                       borderRadius: '0.5rem',
                       border: '1px solid #f3f4f6',
                       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-                    }}
+                    }} 
+                    formatter={(value: number) => [`${value}%`, 'Completion Rate']}
                   />
                   <Bar 
                     dataKey="rate" 
@@ -1622,7 +1624,7 @@ const StatsView: React.FC<StatsViewProps> = ({ habits }) => {
                   layout="vertical"
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                  <XAxis type="number" domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
+                  <XAxis type="number" domain={[0, 100]} tickFormatter={(value: number) => `${value}%`} />
                   <YAxis dataKey="name" type="category" width={100} />
                   <Tooltip 
                     formatter={(value: number, name: string) => [
